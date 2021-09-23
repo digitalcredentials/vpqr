@@ -1,14 +1,19 @@
 module.exports = {
   root: true,
   extends: [
-    'eslint-config-digitalbazaar',
-    // 'eslint-config-digitalbazaar/jsdoc'
+    'digitalbazaar',
+    // 'digitalbazaar/jsdoc'
   ],
   env: {
-    node: true
+    node: true,
+    browser: true
   },
-  ignorePatterns: ['dist/'],
+  parserOptions: {
+    // this is required for dynamic import()
+    ecmaVersion: 2020
+  },
+  ignorePatterns: ['node_modules', 'dist'],
   rules: {
-    'jsdoc/require-description-complete-sentence': 'off'
+    'jsdoc/check-examples': 0
   }
 };
