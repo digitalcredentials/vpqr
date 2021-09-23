@@ -1,5 +1,11 @@
 # vpqr Changelog
 
+## 2.2.1 - 
+
+### Changed
+- Remove 'esm' runtime transpiling, use rollup for packaging (for TypeScript
+  and ReactNative compatibility).
+
 ## 2.2.0 -
 
 ### Changed
