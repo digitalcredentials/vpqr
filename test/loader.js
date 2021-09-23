@@ -1,4 +1,4 @@
-import * as didKey from '@digitalbazaar/did-method-key';
+import * as didKey from '@digitalcredentials/did-method-key';
 import {CachedResolver} from '@digitalbazaar/did-io';
 import citContext from 'cit-context';
 import didContext from 'did-context';

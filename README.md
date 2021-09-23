@@ -1,8 +1,7 @@
-# Verifiable Presentations to QR Code JS Lib _(@digitalbazaar/vpqr)_
+# Verifiable Presentations to QR Code JS Lib _(@digitalcredentials/vpqr)_
 
-[![Node.js CI](https://github.com/digitalbazaar/vpqr/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/vpqr/actions?query=workflow%3A%22Node.js+CI%22)
-[![Coverage status](https://img.shields.io/codecov/c/github/digitalbazaar/vpqr)](https://codecov.io/gh/digitalbazaar/vpqr)
-[![NPM Version](https://img.shields.io/npm/v/@digitalbazaar/vpqr)](https://www.npmjs.com/package/@digitalbazaar/vpqr)
+[![Node.js CI](https://github.com/digitalcredentials/vpqr/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalcredentials/vpqr/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM Version](https://img.shields.io/npm/v/@digitalcredentials/vpqr)](https://www.npmjs.com/package/@digitalcredentials/vpqr)
 
 > An isomorphic JS (for Node.js and browser) library that takes a Verifiable Presentation, compresses it via CBOR-LD, and turns it into a QR Code.
 
@@ -18,7 +17,8 @@
 
 ## Background
 
-TBD
+(Forked from [`digitalbazaar/vpqr` v2.1](https://github.com/digitalbazaar/vpqr)
+to provide TypeScript and ReactNative compatibility.)
 
 ## Security
 
@@ -31,7 +31,7 @@ TBD
 To install locally (for development):
 
 ```
-git clone https://github.com/digitalbazaar/vpqr.git
+git clone https://github.com/digitalcredentials/vpqr.git
 cd vpqr
 npm install
 ```
@@ -41,7 +41,7 @@ npm install
 ### Encoding Verifiable Presentations as QR Code Images
 
 ```js
-import vpqr from '@digitalbazaar/vpqr';
+import vpqr from '@digitalcredentials/vpqr';
 
 const vp = {
   "@context": "https://www.w3.org/2018/credentials/v1",
@@ -114,11 +114,7 @@ PRs accepted.
 If editing the Readme, please conform to the
 [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
-## Commercial Support
-
-Commercial support for this library is available upon request from
-Digital Bazaar: support@digitalbazaar.com
-
 ## License
 
-[New BSD License (3-clause)](LICENSE) © Digital Bazaar
+* MIT License - DCC - TypeScript compatibility.
+* New BSD License (3-clause) © 2021 Digital Bazaar - Initial implementation.

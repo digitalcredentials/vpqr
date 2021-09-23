@@ -5,10 +5,10 @@ import chai from 'chai';
 chai.should();
 const {expect} = chai;
 
-import {Ed25519Signature2020} from '@digitalbazaar/ed25519-signature-2020';
-import vcjs from '@digitalbazaar/vc';
+import {Ed25519Signature2020} from '@digitalcredentials/ed25519-signature-2020';
+import vcjs from '@digitalcredentials/vc';
 
-import {toQrCode, fromQrCode} from '..';
+import {toQrCode, fromQrCode} from '../lib/index.js';
 
 import {
   exampleVp, exampleImageDataUrl, exampleQrCodeData

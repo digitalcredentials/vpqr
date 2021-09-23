@@ -1,8 +1,8 @@
 {
-  "name": "@digitalbazaar/vpqr",
+  "name": "@digitalcredentials/vpqr",
   "version": "2.1.1-0",
   "description": "An isomorphic JS (for Node.js and browser) library that takes a Verifiable Presentation, compresses it via CBOR-LD, and turns it into a QR Code.",
-  "homepage": "https://github.com/digitalbazaar/vpqr",
+  "homepage": "https://github.com/digitalcredentials/vpqr",
   "author": {
     "name": "Digital Bazaar, Inc.",
     "email": "support@digitalbazaar.com",
@@ -10,24 +10,35 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitalbazaar/vpqr"
+    "url": "https://github.com/digitalcredentials/vpqr"
   },
   "bugs": {
-    "url": "https://github.com/digitalbazaar/vpqr/issues",
+    "url": "https://github.com/digitalcredentials/vpqr/issues",
     "email": "support@digitalbazaar.com"
   },
   "license": "BSD-3-Clause",
   "files": [
-    "lib/*.js"
+    "dist",
+    "lib",
+    "rollup.config.js",
+    "build-dist.sh",
+    "README.md",
+    "LICENSE"
   ],
-  "main": "lib/index.js",
-  "module": "lib/main.js",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "dependencies": {
-    "@digitalbazaar/cborld": "^4.2.0",
+    "@digitalcredentials/cborld": "^4.3.1",
     "@nuintun/qrcode": "^3.0.1",
     "base32-decode": "^1.0.0",
-    "base32-encode": "^1.2.0",
-    "esm": "^3.2.25"
+    "base32-encode": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
@@ -35,22 +46,23 @@
     "@babel/plugin-transform-runtime": "^7.13.9",
     "@babel/preset-env": "^7.13.9",
     "@babel/runtime": "^7.13.9",
-    "@digitalbazaar/did-io": "^1.0.0",
-    "@digitalbazaar/did-method-key": "^2.0.0",
-    "@digitalbazaar/ed25519-signature-2020": "^3.0.0",
-    "@digitalbazaar/ed25519-verification-key-2020": "^3.1.0",
-    "@digitalbazaar/vc": "^1.0.0",
+    "@digitalbazaar/did-io": "digitalbazaar/did-io#noesm",
+    "@digitalcredentials/did-method-key": "^2.0.2",
+    "@digitalcredentials/ed25519-signature-2020": "^3.0.2",
+    "@digitalcredentials/ed25519-verification-key-2020": "^3.1.2",
+    "@digitalcredentials/vc": "^1.0.5",
     "age-verification-context": "^5.0.0",
     "babel-loader": "^8.2.2",
     "chai": "^4.3.3",
     "cit-context": "^2.0.0",
-    "credentials-context": "^1.0.0",
+    "credentials-context": "^2.0.0",
     "cross-env": "^7.0.3",
     "did-context": "^3.0.0",
     "ed25519-signature-2020-context": "^1.1.0",
     "eslint": "^7.21.0",
     "eslint-config-digitalbazaar": "^2.6.1",
     "eslint-plugin-jsdoc": "^32.2.0",
+    "esm": "^3.2.25",
     "jsonld-document-loader": "^1.2.0",
     "karma": "^6.1.1",
     "karma-babel-preprocessor": "^8.0.1",
@@ -63,6 +75,8 @@
     "mocha": "^8.3.1",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.47.0",
     "webpack": "^5.24.3",
     "x25519-key-agreement-2020-context": "^1.0.0"
   },
@@ -80,14 +94,27 @@
     "crypto": false,
     "util": false
   },
+  "react-native": {
+    "buffer": false,
+    "crypto": false,
+    "util": false
+  },
   "engines": {
     "node": ">=12"
   },
   "keywords": [
     "Decentralized",
-    "Linked Data"
+    "Linked Data",
+    "CBOR-LD",
+    "QR"
   ],
   "scripts": {
+    "rollup": "rollup -c rollup.config.js",
+    "build": "npm run clear && npm run rollup && ./build-dist.sh",
+    "clear": "rimraf dist/*",
+    "prepare": "npm run build",
+    "prepack": "npm run build",
+    "rebuild": "npm run clear && npm run build",
     "test": "npm run lint && npm run test-node && npm run test-karma",
     "test-node": "cross-env NODE_ENV=test mocha -r esm --preserve-symlinks -t 10000 test/*.spec.js",
     "test-karma": "karma start karma.conf.js",
